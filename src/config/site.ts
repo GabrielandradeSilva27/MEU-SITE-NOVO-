@@ -41,6 +41,13 @@ export const site = {
    * Defina NEXT_PUBLIC_FORM_ENDPOINT no .env. Sem ele, o formulário envia pelo WhatsApp.
    */
   formEndpoint: process.env.NEXT_PUBLIC_FORM_ENDPOINT ?? "",
+
+  /** Trilha de fundo: toca em loop, baixinha, e some enquanto um vídeo do portfólio está aberto. */
+  music: {
+    src: "/media/audio/trilha.m4a",
+    /** Volume de 0 a 1 (0.15 = 15%). */
+    volume: 0.15,
+  },
 } as const;
 
 export const whatsappLink = (text?: string) =>

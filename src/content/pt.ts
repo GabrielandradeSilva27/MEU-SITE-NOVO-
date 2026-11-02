@@ -171,6 +171,7 @@ export const pt = {
 
   floating: { label: "Fale com a G/A no WhatsApp", message: "Olá, G/A! Vim pelo site e quero conversar sobre um projeto." },
   menu: { open: "Menu", close: "Fechar" },
+  sound: { label: "Som", on: "Ligar a trilha sonora", off: "Desligar a trilha sonora" },
 } as const;
 
 export type Copy = typeof pt;

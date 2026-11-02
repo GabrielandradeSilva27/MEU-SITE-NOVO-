@@ -20,7 +20,6 @@
 .ga-header__logo img { height: auto; }
 .ga-header__center { display: flex; align-items: center; gap: 28px; }
 .ga-header__menu {
-  justify-self: end;
   display: inline-flex;
   align-items: center;
   gap: 12px;
@@ -28,6 +27,32 @@
   font-size: 14px;
   font-weight: 700;
 }
+.ga-header__end { justify-self: end; display: flex; align-items: center; gap: 28px; }
+.ga-sound {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  height: 44px;
+  font-size: 14px;
+  font-weight: 700;
+  opacity: 0.6;
+  transition: opacity 300ms;
+}
+.ga-sound:hover, .ga-sound:focus-visible, .ga-sound.is-on { opacity: 1; }
+.ga-sound__bars { display: flex; align-items: flex-end; gap: 2px; height: 12px; }
+.ga-sound__bars > span {
+  width: 2px; height: 100%; background: currentColor;
+  transform: scaleY(0.17); transform-origin: bottom;
+  transition: transform 400ms var(--ease-out-expo);
+}
+.ga-sound.is-on .ga-sound__bars > span { transform: scaleY(0.6); }
+@media (prefers-reduced-motion: no-preference) {
+  .ga-sound.is-on .ga-sound__bars > span { animation: sound-bar 1.1s ease-in-out infinite alternate; }
+  .ga-sound.is-on .ga-sound__bars > span:nth-child(2) { animation-duration: 0.8s; animation-delay: -0.3s; }
+  .ga-sound.is-on .ga-sound__bars > span:nth-child(3) { animation-duration: 1.3s; animation-delay: -0.6s; }
+  .ga-sound.is-on .ga-sound__bars > span:nth-child(4) { animation-duration: 0.95s; animation-delay: -0.15s; }
+}
+@keyframes sound-bar { from { transform: scaleY(0.2); } to { transform: scaleY(1); } }
 .menu-icon { position: relative; width: 24px; height: 12px; }
 .menu-icon > span {
   position: absolute; left: 0; right: 0; height: 2px; background: currentColor;
@@ -42,6 +67,7 @@
 @media (max-width: 767px) {
   .ga-header { grid-template-columns: 1fr auto; }
   .ga-header__center { display: none; }
+  .ga-header__end { gap: 20px; }
 }
 
 /* ---- Menu ----------------------------------------------------------------- */

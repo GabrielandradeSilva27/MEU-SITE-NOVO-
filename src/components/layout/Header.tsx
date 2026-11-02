@@ -5,6 +5,7 @@ import { nav, site, whatsappLink } from "@/config/site";
 import { pt } from "@/content/pt";
 import { Timecode } from "@/components/ui/Timecode";
 import { lockScroll } from "./SmoothScroll";
+import { SoundToggle } from "./SoundToggle";
 
 export function Header() {
   const [open, setOpen] = useState(false);
@@ -46,6 +47,8 @@ export function Header() {
           <span className="t-small">{site.locationShort} · Brasil</span>
           <Timecode />
         </div>
+        <div className="ga-header__end">
+        <SoundToggle />
         <button
           className="ga-header__menu"
           aria-expanded={open}
@@ -58,6 +61,7 @@ export function Header() {
             <span />
           </span>
         </button>
+        </div>
       </header>
 
       <nav id="menu" className={`ga-menu ${open ? "is-open" : ""}`} aria-label="Principal" aria-hidden={!open} inert={!open}>

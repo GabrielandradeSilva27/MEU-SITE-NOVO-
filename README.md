@@ -22,6 +22,7 @@ npm start            # serve /out em http://localhost:5173
 | Projetos do portfólio | `src/content/projects.ts` |
 | Logo | `public/brand/` (mesmos nomes de arquivo) |
 | Vídeo do hero e demais vídeos | `public/media/…` (mesmo nome, ou altere o caminho em `pt.ts`) |
+| Trilha de fundo (arquivo e volume) | `public/media/audio/trilha.m4a` e `src/config/site.ts` → `music` |
 
 ### Vídeos
 Os loops do site são curtos (6–20 s), sem áudio e leves (~1 MB). As versões completas do portfólio (`*-full.mp4`) abrem no player.

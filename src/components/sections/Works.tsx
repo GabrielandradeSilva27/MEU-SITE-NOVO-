@@ -7,6 +7,7 @@ import { pt } from "@/content/pt";
 import { LoopVideo } from "@/components/ui/LoopVideo";
 import { Lines } from "@/components/ui/Lines";
 import { lockScroll } from "@/components/layout/SmoothScroll";
+import { duckMusic } from "@/lib/music";
 
 const filters: ("Todos" | Pillar)[] = ["Todos", "Performance", "Tempo Real", "Posicionamento"];
 
@@ -98,6 +99,7 @@ function Lightbox({ list, index, onClose, onMove }: { list: Project[]; index: nu
     const d = ref.current!;
     d.showModal();
     lockScroll(true);
+    duckMusic(true);
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "ArrowRight") onMove(1);
       if (e.key === "ArrowLeft") onMove(-1);
@@ -106,6 +108,7 @@ function Lightbox({ list, index, onClose, onMove }: { list: Project[]; index: nu
     return () => {
       window.removeEventListener("keydown", onKey);
       lockScroll(false);
+      duckMusic(false);
     };
   }, [onMove]);
 
