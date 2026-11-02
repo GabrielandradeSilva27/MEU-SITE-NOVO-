@@ -31,7 +31,7 @@ export function Footer() {
         {/* Logo gigante ao fundo, apagada, apoiada na linha dos direitos. */}
         <div className="ga-footer__mark" aria-hidden>
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/brand/ga-simbolo-preto.svg" alt="" width={2037} height={1080} loading="lazy" />
+          <img src="/brand/ga-simbolo-recortado.svg" alt="" width={1840} height={882} loading="lazy" />
         </div>
       </div>
       <div className="wrap ga-footer__legal">
