@@ -17,14 +17,14 @@ full() { $ENC "$M/$1-full.mp4" --w $2 --kbps 2200 --fps 30 --audio --seg "$RAW/$
 
 # HERO — reel horizontal
 $ENC $M/hero/reel.mp4 --w 1600 --kbps 2400 --fps 25 --poster "$M/hero/reel.jpg@0.6" \
-  --seg "$RAW/NOPAPER - VILA VELHA - FINAL .mov@7@4.5" \
-  --seg "$RAW/CRISTIANE - ANI 50 ANOS - FINAL .mov@52@4.5" \
-  --seg "$RAW/_gabriel.rec (1).mp4@71.8@4.5" \
-  --seg "$RAW/VARGAS - VIDEO INSTITUCIONAL - LEGENDAS  - final - v2.mov@36@4.5" \
-  --seg "$RAW/CRISTIANE - ANI 50 ANOS - FINAL .mov@95@4.5" \
-  --seg "$RAW/V2 - FINAL - MOMENTO AGAPE - SETEMBRO (LEGENDAS)alt.mp4@17@4.5" \
-  --seg "$RAW/CRISTIANE - ANI 50 ANOS - FINAL .mov@124@4.5" \
-  --seg "$RAW/KICK COFFE - FINAL .mov@4@4.5"
+  --seg "$RAW/NOPAPER - VILA VELHA - FINAL .mov@7@5.25" \
+  --seg "$RAW/CRISTIANE - ANI 50 ANOS - FINAL .mov@52@5.25" \
+  --seg "$RAW/_gabriel.rec (1).mp4@71.8@5.25" \
+  --seg "$RAW/VARGAS - VIDEO INSTITUCIONAL - LEGENDAS  - final - v2.mov@36@5.25" \
+  --seg "$RAW/CRISTIANE - ANI 50 ANOS - FINAL .mov@95@5.25" \
+  --seg "$RAW/V2 - FINAL - MOMENTO AGAPE - SETEMBRO (LEGENDAS)alt.mp4@17@5.25" \
+  --seg "$RAW/CRISTIANE - ANI 50 ANOS - FINAL .mov@124@5.25" \
+  --seg "$RAW/KICK COFFE - FINAL .mov@4@5.25"
 
 # MANIFESTO e PROCESSO — faixas horizontais
 loop manifesto/aerial 1280 1600 "CRISTIANE - ANI 50 ANOS - FINAL .mov" 190 8
