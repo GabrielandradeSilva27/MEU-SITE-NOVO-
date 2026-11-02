@@ -10,7 +10,8 @@ const FADE_IN = 1.2;
 const FADE_OUT = 0.6;
 const PREF_KEY = "ga-sound";
 
-type State = { enabled: boolean; audible: boolean };
+/** `blocked`: a trilha deveria tocar, mas o navegador ainda não liberou o som. */
+type State = { enabled: boolean; audible: boolean; blocked: boolean };
 
 let audio: HTMLAudioElement | null = null;
 let ctx: AudioContext | null = null;
@@ -19,10 +20,12 @@ let target = 0.25;
 let enabled = true;
 let ducks = 0;
 let audible = false;
+let refused = false;
 let pauseTimer: ReturnType<typeof setTimeout> | undefined;
 const listeners = new Set<(s: State) => void>();
 
-const emit = () => listeners.forEach((fn) => fn({ enabled, audible }));
+const snapshot = (): State => ({ enabled, audible, blocked: refused && enabled && ducks === 0 && !audible });
+const emit = () => listeners.forEach((fn) => fn(snapshot()));
 
 function rampTo(value: number, seconds: number) {
   if (!ctx || !gain) return;
@@ -40,13 +43,16 @@ function update() {
   if (want) {
     Promise.all([ctx.resume(), audio.play()])
       .then(() => {
-        if (ctx!.state !== "running") return;
+        if (ctx!.state !== "running") throw new Error("suspended");
+        refused = false;
         rampTo(target, FADE_IN);
         audible = true;
         emit();
       })
       .catch(() => {
         /* bloqueado até a primeira interação */
+        refused = true;
+        emit();
       });
   } else {
     rampTo(0, FADE_OUT);
@@ -116,6 +122,6 @@ export function toggleSound() {
 
 export function subscribeMusic(fn: (s: State) => void) {
   listeners.add(fn);
-  fn({ enabled, audible });
+  fn(snapshot());
   return () => void listeners.delete(fn);
 }

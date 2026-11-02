@@ -3,26 +3,28 @@
 # Requer macOS (usa AVFoundation, sem ffmpeg). Uso: bash scripts/media/build-media.sh
 set -e
 cd "$(dirname "$0")/../.."
+# Os vídeos brutos ficam na pasta acima do projeto (CLAUDE WEB SITE). Troque com RAW=/outro/caminho.
+RAW="${RAW:-..}"
 ENC=.media-cache/encode
 mkdir -p .media-cache
 [ -x $ENC ] || swiftc -O scripts/media/encode.swift -o $ENC
 M=public/media
 
 # Loop sem áudio:  loop SAÍDA LARGURA KBPS ARQUIVO INÍCIO DURAÇÃO
-loop() { $ENC "$M/$1.mp4" --w $2 --kbps $3 --fps 25 --poster "$M/$1.jpg@0.4" --seg "$4@$5@$6"; }
+loop() { $ENC "$M/$1.mp4" --w $2 --kbps $3 --fps 25 --poster "$M/$1.jpg@0.4" --seg "$RAW/$4@$5@$6"; }
 # Vídeo completo com áudio para o player:  full SAÍDA LARGURA ARQUIVO
-full() { $ENC "$M/$1-full.mp4" --w $2 --kbps 2200 --fps 30 --audio --seg "$3@0@0"; }
+full() { $ENC "$M/$1-full.mp4" --w $2 --kbps 2200 --fps 30 --audio --seg "$RAW/$3@0@0"; }
 
 # HERO — reel horizontal
 $ENC $M/hero/reel.mp4 --w 1600 --kbps 2400 --fps 25 --poster "$M/hero/reel.jpg@0.6" \
-  --seg "_gabriel.rec (1).mp4@127@2.6" \
-  --seg "CRISTIANE - ANI 50 ANOS - FINAL .mov@112.5@2.6" \
-  --seg "_gabriel.rec (1).mp4@71.8@2.6" \
-  --seg "VARGAS - VIDEO INSTITUCIONAL - LEGENDAS  - final - v2.mov@63.4@2.6" \
-  --seg "CRISTIANE - ANI 50 ANOS - FINAL .mov@95@2.4" \
-  --seg "V2 - FINAL - MOMENTO AGAPE - SETEMBRO (LEGENDAS)alt.mp4@56@2.6" \
-  --seg "CRISTIANE - ANI 50 ANOS - FINAL .mov@124@2.4" \
-  --seg "CRISTIANE - ANI 50 ANOS - FINAL .mov@192.5@3.6"
+  --seg "$RAW/_gabriel.rec (1).mp4@127@2.6" \
+  --seg "$RAW/CRISTIANE - ANI 50 ANOS - FINAL .mov@112.5@2.6" \
+  --seg "$RAW/_gabriel.rec (1).mp4@71.8@2.6" \
+  --seg "$RAW/VARGAS - VIDEO INSTITUCIONAL - LEGENDAS  - final - v2.mov@63.4@2.6" \
+  --seg "$RAW/CRISTIANE - ANI 50 ANOS - FINAL .mov@95@2.4" \
+  --seg "$RAW/V2 - FINAL - MOMENTO AGAPE - SETEMBRO (LEGENDAS)alt.mp4@56@2.6" \
+  --seg "$RAW/CRISTIANE - ANI 50 ANOS - FINAL .mov@124@2.4" \
+  --seg "$RAW/CRISTIANE - ANI 50 ANOS - FINAL .mov@192.5@3.6"
 
 # MANIFESTO e PROCESSO — faixas horizontais
 loop manifesto/aerial 1280 1600 "CRISTIANE - ANI 50 ANOS - FINAL .mov" 190 8
@@ -50,3 +52,11 @@ work coworking 540 "SPACE22 - SALA 1 - FINAL .mov" 25 720
 work evento 540 "Evento - GIGANTES - ALLIS - 2 - v2.mov" 10 720
 work consultorio 540 "DR IGOR - NOVO ENDEREÇO - FINAL.mov" 12 720
 work bairro 540 "BRENDA - ARBORI.mp4" 14 720
+work feira-inovacao 960 "NOPAPER-AFTERSP.mov" 3 1280
+work casa-condominio 540 "SANDRO - MANSÃO(alt).MP4" 22 720
+work imersao 960 "KICK COFFE - FINAL .mov" 37 1280
+work orla 540 "manuhvitorio (1).mp4" 2 720
+work encontro-mercado 960 "OMINIHEAD - BASE027 - HORIZONTAL - final.mov" 95 1280
+work antes-depois 540 "NPC - ANTES E DEPOIS.mp4" 14 720
+work feira-bastidores 540 "NOPAPER - SP .mov" 33 720
+work litoral 540 "manuhvitorio.mp4" 2 720

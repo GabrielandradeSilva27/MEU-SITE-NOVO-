@@ -39,6 +39,7 @@
   transition: opacity 300ms;
 }
 .ga-sound:hover, .ga-sound:focus-visible, .ga-sound.is-on { opacity: 1; }
+.ga-sound.is-blocked { opacity: 1; color: var(--color-green); }
 .ga-sound__bars { display: flex; align-items: flex-end; gap: 2px; height: 12px; }
 .ga-sound__bars > span {
   width: 2px; height: 100%; background: currentColor;
