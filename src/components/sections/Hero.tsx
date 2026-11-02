@@ -7,11 +7,11 @@ import { ButtonLink } from "@/components/ui/Button";
 
 const { hero } = pt;
 /** Tempo (ms) que o título fica na tela antes do vídeo assumir o protagonismo. */
-const TITLE_HOLD = 6000;
+const TITLE_HOLD = 3000;
 
 /**
  * Abertura: "Ideias em movimento" entra sobre o vídeo escurecido;
- * depois de ~6 s o título sai e o vídeo ganha cor e luz, rodando em loop.
+ * depois de ~3 s o título sai e o vídeo ganha cor e luz, rodando em loop.
  */
 export function Hero() {
   const [phase, setPhase] = useState<"intro" | "title" | "film">("intro");
