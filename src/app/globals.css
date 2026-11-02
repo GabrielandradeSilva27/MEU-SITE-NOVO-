@@ -1,0 +1,204 @@
+@import "tailwindcss" source(none);
+@source "../";
+
+/* ==========================================================================
+   G/A PRODUCTIONS — tokens
+   Cores e tipografia da Proposta de Marca. Tudo referencia estes tokens.
+   ========================================================================== */
+@theme {
+  --color-black: #0d0d0d;
+  --color-graphite: #2b2b2b;
+  --color-gray: #e6e6e6;
+  --color-white: #ffffff;
+  --color-green: #00d1b2;
+  --color-surface: #161616;
+  --color-surface-2: #202020;
+  --color-muted: #8c8c8c;
+  --color-muted-dark: #5e5e5e;
+
+  --font-sans: var(--font-jakarta), system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-cut: cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+:root {
+  --bg: var(--color-black);
+  --ink: var(--color-white);
+  --margin: clamp(16px, 2.6vw, 40px);
+  --gutter: clamp(12px, 1.6vw, 24px);
+  --section: clamp(112px, 12vw, 200px);
+  --header-h: 72px;
+
+  /* escala tipográfica — o título do hero é a única peça gigante */
+  --t-hero: clamp(60px, 10.4vw, 176px);
+  --t-display: clamp(40px, 5.4vw, 88px);
+  --t-title: clamp(28px, 2.9vw, 44px);
+  --t-statement: clamp(21px, 2vw, 30px);
+  --t-body: 17px;
+  --t-small: 14px;
+}
+
+@layer base {
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: auto; }
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-size: var(--t-body);
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: clip;
+}
+::selection { background: var(--color-green); color: var(--color-black); }
+:focus-visible { outline: 2px solid var(--color-green); outline-offset: 3px; }
+img, video { display: block; max-width: 100%; }
+button { cursor: pointer; }
+}
+
+/* Lenis */
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-stopped { overflow: hidden; }
+
+/* ---- Tipografia ---------------------------------------------------------- */
+.t-hero {
+  font-size: var(--t-hero);
+  font-weight: 800;
+  line-height: 0.88;
+  letter-spacing: -0.045em;
+  text-transform: uppercase;
+}
+.t-display {
+  font-size: var(--t-display);
+  font-weight: 800;
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+  text-transform: uppercase;
+}
+.t-title {
+  font-size: var(--t-title);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+}
+.t-statement {
+  font-size: var(--t-statement);
+  font-weight: 500;
+  line-height: 1.25;
+  letter-spacing: -0.015em;
+}
+.t-small { font-size: var(--t-small); line-height: 1.45; }
+.tnum { font-variant-numeric: tabular-nums; }
+
+.wrap { padding-inline: var(--margin); }
+.section { padding-block: calc(var(--section) / 2); }
+
+/* ---- Mídia ---------------------------------------------------------------- */
+.media {
+  position: relative;
+  overflow: hidden;
+  background: var(--color-surface);
+}
+.media > video, .media > img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.bw { filter: grayscale(1) contrast(1.06); transition: filter 700ms var(--ease-out-expo); }
+
+/* ---- Botões --------------------------------------------------------------- */
+.btn {
+  --btn-bg: var(--color-green);
+  --btn-ink: var(--color-black);
+  --btn-wipe: var(--color-white);
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  height: 56px;
+  padding-inline: 26px;
+  background: var(--btn-bg);
+  color: var(--btn-ink);
+  font-size: 16px;
+  font-weight: 700;
+  transition: transform 200ms var(--ease-out-expo), color 300ms;
+}
+/* a faixa entra no ângulo do "/" da logo */
+.btn::before {
+  content: "";
+  position: absolute;
+  inset: -2px -35%;
+  z-index: -1;
+  background: var(--btn-wipe);
+  transform: translateX(-112%) skewX(-24deg);
+  transition: transform 520ms var(--ease-cut);
+}
+.btn:hover::before, .btn:focus-visible::before { transform: translateX(0) skewX(-24deg); }
+.btn:active { transform: scale(0.97); }
+.btn .btn-arrow { transition: transform 400ms var(--ease-out-expo); }
+.btn:hover .btn-arrow { transform: translateX(4px); }
+.btn--light { --btn-bg: var(--color-white); --btn-ink: var(--color-black); --btn-wipe: var(--color-green); }
+.btn--dark { --btn-bg: var(--color-black); --btn-ink: var(--color-white); --btn-wipe: var(--color-green); }
+.btn--dark:hover, .btn--dark:focus-visible { color: var(--color-black); }
+
+.link-line { position: relative; display: inline-block; padding-block: 2px; }
+.link-line::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  height: 2px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 450ms var(--ease-out-expo);
+}
+.link-line:hover::after, .link-line:focus-visible::after { transform: scaleX(1); transform-origin: left; }
+
+/* ---- Revelações (estado inicial só quando o movimento é permitido) -------- */
+@media (prefers-reduced-motion: no-preference) {
+  .js [data-reveal] {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 900ms var(--ease-out-expo), transform 900ms var(--ease-out-expo);
+    transition-delay: calc(var(--i, 0) * 80ms);
+  }
+  .js [data-reveal].is-in { opacity: 1; transform: none; }
+
+  /* linhas de texto que sobem de dentro de uma máscara */
+  .js [data-lines] .line { overflow: hidden; display: block; padding-bottom: 0.08em; margin-bottom: -0.08em; }
+  .js [data-lines] .line > span {
+    display: block;
+    transform: translateY(105%);
+    transition: transform 1100ms var(--ease-out-expo);
+    transition-delay: calc(var(--l, 0) * 90ms + var(--d, 0ms));
+  }
+  .js [data-lines].is-in .line > span { transform: none; }
+
+  /* imagem que abre em máscara diagonal, no corte da logo */
+  .js [data-mask] {
+    clip-path: polygon(0 100%, 0 100%, 0 100%, 0 100%);
+    transition: clip-path 1400ms var(--ease-cut);
+  }
+  .js [data-mask].is-in { clip-path: polygon(0 0, 125% 0, 100% 100%, 0 100%); }
+}
+
+/* ---- Timecode ------------------------------------------------------------- */
+.rec-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--color-green); animation: rec 1.6s steps(2, jump-none) infinite; }
+@keyframes rec { 50% { opacity: 0.15; } }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    transition-delay: 0s !important;
+  }
+}

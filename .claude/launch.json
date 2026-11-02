@@ -1,0 +1,22 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "ga-next",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": [
+        "run",
+        "dev"
+      ],
+      "port": 3000
+    },
+    {
+      "name": "ga-prod",
+      "runtimeExecutable": "node",
+      "runtimeArgs": [
+        "/Users/gabriel/Desktop/CLAUDE CODE/CLAUDE WEB SITE/scripts/serve-out.mjs"
+      ],
+      "port": 5173
+    }
+  ]
+}
