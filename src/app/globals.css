@@ -172,11 +172,12 @@ html.lenis, html.lenis body { height: auto; }
   }
   .js [data-reveal].is-in { opacity: 1; transform: none; }
 
-  /* linhas de texto que sobem de dentro de uma máscara */
-  .js [data-lines] .line { overflow: hidden; display: block; padding-bottom: 0.08em; margin-bottom: -0.08em; }
+  /* linhas de texto que sobem de dentro de uma máscara.
+     A folga em cima e embaixo deixa à mostra acentos de maiúsculas (Ó, Ê, Ã, Ú) e o Ç. */
+  .js [data-lines] .line { overflow: hidden; display: block; padding-block: 0.24em 0.14em; margin-block: -0.24em -0.14em; }
   .js [data-lines] .line > span {
     display: block;
-    transform: translateY(105%);
+    transform: translateY(140%);
     transition: transform 1100ms var(--ease-out-expo);
     transition-delay: calc(var(--l, 0) * 90ms + var(--d, 0ms));
   }
