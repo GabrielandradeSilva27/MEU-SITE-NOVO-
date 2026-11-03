@@ -1,8 +1,7 @@
 import { nav, site, whatsappLink } from "@/config/site";
 import { pt } from "@/content/pt";
 
-/* Símbolo G/A (de /brand/ga-simbolo-recortado.svg) separado em letras e barra:
-   as letras invertem de cor sobre o fundo escuro, a barra verde fica igual. */
+/* Símbolo G/A (de /brand/ga-simbolo-recortado.svg), desenhado direto no rodapé. */
 const MARK_VIEWBOX = "78 102 1840 882";
 const MARK_LETTERS = [
   "M485.5,471.7v142.9h258.4l-98.5,224.9H517.9c-78.7,0-153-31-209.2-87.2c-56.2-56.2-87.2-130.5-87.2-209.2 c0-78.7,31-153,87.2-209.2c56.2-56.2,130.5-87.2,209.2-87.2h175L755,104.9H517.9c-58.9,0-116.2,11.6-170.2,34.6 c-52.1,22.1-99,53.8-139.3,94.1c-40.3,40.3-72,87.2-94.1,139.3c-23,54-34.6,111.3-34.6,170.2s11.6,116.2,34.6,170.2 c22.1,52.1,53.8,99,94.1,139.3c40.3,40.3,87.2,72,139.3,94.1c54,23,111.3,34.6,170.2,34.6h225l221.3-509.7H485.5z",
@@ -38,21 +37,19 @@ export function Footer() {
             <span>{site.country}</span>
           </div>
         </div>
-        {/* Logo gigante ao fundo: base na linha dos direitos, sobe até a seção de contato. */}
-        <div className="ga-footer__mark" aria-hidden>
-          <svg className="ga-footer__mark-letters" viewBox={MARK_VIEWBOX}>
-            {MARK_LETTERS.map((d) => <path key={d.slice(0, 12)} d={d} />)}
-            <polygon points={MARK_A_LEG} />
-          </svg>
-          <svg className="ga-footer__mark-slash" viewBox={MARK_VIEWBOX}>
-            <path d={MARK_SLASH} />
-          </svg>
-        </div>
       </div>
       <div className="wrap ga-footer__legal">
         <span>© {year} {site.name} — {pt.footer.rights}</span>
         <a className="link-line" href="/privacidade/">{pt.footer.privacy}</a>
         <a className="link-line" href="#inicio">{pt.footer.backToTop} ↑</a>
+      </div>
+      {/* Logo gigante no fim da página, cortada embaixo. */}
+      <div className="ga-footer__mark" aria-hidden>
+        <svg viewBox={MARK_VIEWBOX}>
+          {MARK_LETTERS.map((d) => <path key={d.slice(0, 12)} d={d} />)}
+          <polygon points={MARK_A_LEG} />
+          <path className="ga-footer__mark-slash" d={MARK_SLASH} />
+        </svg>
       </div>
     </footer>
   );

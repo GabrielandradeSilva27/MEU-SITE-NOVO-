@@ -595,8 +595,8 @@
 }
 
 /* ---- Footer --------------------------------------------------------------- */
-.ga-footer { background: var(--color-white); color: var(--color-black); }
-.ga-footer__body { position: relative; padding-block: clamp(72px, 8vw, 120px) clamp(56px, 6vw, 96px); }
+.ga-footer { background: var(--color-white); color: var(--color-black); overflow: hidden; }
+.ga-footer__body { padding-block: clamp(72px, 8vw, 120px) clamp(56px, 6vw, 96px); }
 .ga-footer ::selection { background: var(--color-black); color: var(--color-white); }
 .ga-footer__top { display: grid; grid-template-columns: 2fr 1fr 1.3fr 1fr; gap: 40px var(--gutter); }
 .ga-footer__brand img { width: 96px; height: auto; }
@@ -610,20 +610,10 @@
   font-size: 14px;
   color: var(--color-muted-dark);
 }
-/* Logo de fundo: base na linha dos direitos e sobe por trás da seção de contato.
-   As letras usam "difference": escuras sobre o branco, claras sobre o preto. */
-.ga-footer__top, .ga-footer__legal { position: relative; z-index: 1; }
-.ga-contact { position: relative; z-index: 1; }
-.ga-footer__mark {
-  position: absolute;
-  inset-inline: var(--margin);
-  bottom: 0;
-  aspect-ratio: 1840 / 882;
-  pointer-events: none;
-}
-.ga-footer__mark svg { position: absolute; inset: 0; width: 100%; height: 100%; }
-.ga-footer__mark-letters { mix-blend-mode: difference; fill: #fff; fill-opacity: 0.07; }
-.ga-footer__mark-slash { fill: #00bda8; fill-opacity: 0.07; }
+/* Logo gigante abaixo da linha dos direitos, ocupando a largura e cortada embaixo. */
+.ga-footer__mark { padding-inline: var(--margin); aspect-ratio: 1840 / 662; overflow: hidden; }
+.ga-footer__mark svg { display: block; width: 100%; height: auto; fill: var(--color-black); }
+.ga-footer__mark-slash { fill: #00bda8; }
 @media (max-width: 1023px) { .ga-footer__top { grid-template-columns: 1fr 1fr; } }
 @media (max-width: 560px) {
   .ga-footer__top { grid-template-columns: 1fr; }
