@@ -27,7 +27,7 @@ $ENC $M/hero/reel.mp4 --w 1600 --kbps 2400 --fps 25 --poster "$M/hero/reel.jpg@0
   --seg "$RAW/KICK COFFE - FINAL .mov@4@5.25"
 
 # MANIFESTO e PROCESSO — faixas horizontais
-loop manifesto/aerial 1280 1600 "CRISTIANE - ANI 50 ANOS - FINAL .mov" 190 8
+loop manifesto/aerial 1280 1600 "V2 - FINAL - MOMENTO AGAPE - SETEMBRO (LEGENDAS)alt.mp4" 68 8
 loop process/room 1280 1400 "_gabriel.rec (1).mp4" 126.5 8
 
 # PILARES — verticais
