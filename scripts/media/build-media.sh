@@ -24,7 +24,7 @@ $ENC $M/hero/reel.mp4 --w 1600 --kbps 2400 --fps 25 --poster "$M/hero/reel.jpg@0
   --seg "$RAW/CRISTIANE - ANI 50 ANOS - FINAL .mov@95@5.25" \
   --seg "$RAW/V2 - FINAL - MOMENTO AGAPE - SETEMBRO (LEGENDAS)alt.mp4@17@5.25" \
   --seg "$RAW/V2 - FINAL - MOMENTO AGAPE - SETEMBRO (LEGENDAS)alt.mp4@100@5.25" \
-  --seg "$RAW/KICK COFFE - FINAL .mov@4@5.25"
+  --seg "$RAW/MOMENTO AGAPE 5 EDIÇÃO - LEGENDAS .mov@19@5.25"
 
 # MANIFESTO e PROCESSO — faixas horizontais
 loop manifesto/aerial 1280 1600 "V2 - FINAL - MOMENTO AGAPE - SETEMBRO (LEGENDAS)alt.mp4" 68 8
