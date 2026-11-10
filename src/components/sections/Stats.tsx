@@ -6,10 +6,21 @@ import { pt } from "@/content/pt";
 import { LoopVideo } from "@/components/ui/LoopVideo";
 import { Lines } from "@/components/ui/Lines";
 
-const fmt = (n: number) => n.toLocaleString("pt-BR");
+const fmt = (n: number, decimals: number) =>
+  n.toLocaleString("pt-BR", { minimumFractionDigits: decimals, maximumFractionDigits: decimals });
 
 /** Conta do zero até o valor configurado quando entra na tela. */
-function Counter({ value, prefix = "", suffix = "" }: { value: number; prefix?: string; suffix?: string }) {
+function Counter({
+  value,
+  prefix = "",
+  suffix = "",
+  decimals = 0,
+}: {
+  value: number;
+  prefix?: string;
+  suffix?: string;
+  decimals?: number;
+}) {
   const ref = useRef<HTMLSpanElement>(null);
   const [shown, setShown] = useState(0);
   useEffect(() => {
@@ -21,17 +32,18 @@ function Counter({ value, prefix = "", suffix = "" }: { value: number; prefix?: 
       const start = performance.now();
       const step = (t: number) => {
         const p = Math.min((t - start) / 1600, 1);
-        setShown(Math.round(value * (1 - Math.pow(1 - p, 4))));
+        const f = 10 ** decimals;
+        setShown(Math.round(value * (1 - Math.pow(1 - p, 4)) * f) / f);
         if (p < 1) requestAnimationFrame(step);
       };
       requestAnimationFrame(step);
     });
     io.observe(el);
     return () => io.disconnect();
-  }, [value]);
+  }, [value, decimals]);
   return (
     <span ref={ref} className="tnum">
-      {prefix}{fmt(shown)}{suffix}
+      {prefix}{fmt(shown, decimals)}{suffix}
     </span>
   );
 }
@@ -52,9 +64,9 @@ export function Stats() {
         <p className="t-statement mt-6 max-w-[28ch]" data-reveal="">{pt.stats.intro}</p>
         <dl className="ga-stats__grid">
           {stats.items.map((s, i) => (
-            <div key={s.id} className={`ga-stat ${s.prefix ? "is-wide" : ""}`} data-reveal="" style={{ "--i": i } as React.CSSProperties}>
+            <div key={s.id} className={`ga-stat ${s.wide ? "is-wide" : ""}`} data-reveal="" style={{ "--i": i } as React.CSSProperties}>
               <dd className="ga-stat__value">
-                <Counter value={s.value} prefix={s.prefix} suffix={s.suffix} />
+                <Counter value={s.value} prefix={s.prefix} suffix={s.suffix} decimals={s.decimals} />
               </dd>
               <dt className="ga-stat__label">{s.label}</dt>
             </div>

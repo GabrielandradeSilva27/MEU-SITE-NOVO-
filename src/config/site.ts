@@ -67,22 +67,39 @@ export const nav = [
 ] as const;
 
 /**
- * Indicadores. Todos começam em 0 e só devem mudar com dados reais.
+ * Indicadores informados pela G/A. Altere só com dados reais.
+ * `decimals` mostra casas decimais (ex.: 3,8); `wide` ocupa a linha inteira.
  * `visible: false` esconde a faixa inteira sem mexer no layout.
  */
 export const stats: {
   visible: boolean;
-  items: { id: string; label: string; value: number; prefix?: string; suffix?: string }[];
+  items: {
+    id: string;
+    label: string;
+    value: number;
+    prefix?: string;
+    suffix?: string;
+    decimals?: number;
+    wide?: boolean;
+  }[];
 } = {
   visible: true,
   items: [
-    { id: "projectsCompleted", label: "Projetos realizados", value: 0 },
-    { id: "companiesServed", label: "Empresas atendidas", value: 0 },
-    { id: "eventsCovered", label: "Eventos cobertos", value: 0 },
-    { id: "videosProduced", label: "Vídeos produzidos", value: 0 },
-    { id: "recurringClients", label: "Clientes recorrentes", value: 0 },
-    { id: "yearsExperience", label: "Anos de experiência", value: 0 },
-    { id: "clientRevenue", label: "Faturamento gerado para clientes", value: 0, prefix: "R$ " },
+    { id: "projectsCompleted", label: "Projetos realizados", value: 180, prefix: "+" },
+    { id: "companiesServed", label: "Empresas atendidas", value: 80, prefix: "+" },
+    { id: "eventsCovered", label: "Eventos cobertos", value: 35, prefix: "+" },
+    { id: "videosProduced", label: "Vídeos produzidos", value: 500, prefix: "+" },
+    { id: "recurringClients", label: "Clientes recorrentes", value: 10, prefix: "+" },
+    { id: "yearsExperience", label: "Anos de experiência", value: 3, prefix: "+" },
+    {
+      id: "clientRevenue",
+      label: "Em negócios impactados pelo audiovisual",
+      value: 3.8,
+      prefix: "R$ ",
+      suffix: " milhões",
+      decimals: 1,
+      wide: true,
+    },
   ],
 };
 
