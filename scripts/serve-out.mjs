@@ -2,7 +2,7 @@
 import { createServer } from 'node:http';
 import { stat } from 'node:fs/promises';
 import { createReadStream } from 'node:fs';
-import { extname, join, normalize } from 'node:path';
+import { extname, join, normalize, sep } from 'node:path';
 
 const root = join(import.meta.dirname, "..", "out");
 const port = Number(process.env.PORT) || 5173;
@@ -13,10 +13,16 @@ const types = {
 };
 
 createServer(async (req, res) => {
-  let path = decodeURIComponent(new URL(req.url, 'http://x').pathname);
+  let path;
+  try {
+    path = decodeURIComponent(new URL(req.url, 'http://x').pathname);
+  } catch {
+    res.writeHead(400).end('Bad request');
+    return;
+  }
   if (path.endsWith('/')) path += 'index.html';
   const file = normalize(join(root, path));
-  if (!file.startsWith(root)) { res.writeHead(403).end(); return; }
+  if (!file.startsWith(root + sep)) { res.writeHead(403).end(); return; }
   try {
     let info = await stat(file);
     if (info.isDirectory()) { path = join(path, 'index.html'); info = await stat(join(file, 'index.html')); }
@@ -36,4 +42,4 @@ createServer(async (req, res) => {
   } catch {
     res.writeHead(404).end('Not found');
   }
-}).listen(port, () => console.log(`G/A em http://localhost:${port}`));
+}).listen(port, '127.0.0.1', () => console.log(`G/A em http://localhost:${port}`));
